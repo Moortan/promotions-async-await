@@ -1,8 +1,11 @@
-fetch(`https://bco-service-a-com.central-product.aws-eu-west-1.prod.williamhill.plc/v1/offers?langCode=en-gb&jurisdiction=com`)
-    .then(result => result.json())
-    .then(result => main(result))
-    .catch(error => console.error(error));
+async function loadData(){
+    const response = await fetch(`https://bco-service-a-com.central-product.aws-eu-west-1.prod.williamhill.plc/v1/offers?langCode=en-gb&jurisdiction=com`);
+    const data =  response.json();
+    return data;
+}
 
+loadData()
+        .then(data => main(data));
 
 //creating a list of CTA Buttons
 //each element in the list is a button bound with its promo
